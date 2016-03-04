@@ -4,7 +4,9 @@ import javax.swing.JOptionPane;
 
 public class meetDanton {
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void Danton(String[] args, stats s) throws InterruptedException {
+		
+		int currentHealth = s.getHealth();
 		// TODO Auto-generated method stub
 		System.out.println("Danton: Captain sir, I am to show you the ropes of this operation.");
 		Thread.sleep(1000);
@@ -50,11 +52,11 @@ public class meetDanton {
 		System.out.println();
 		System.out.println("Raider: Let's see what you're made of!");
 		
-		int enemyhealth = 30;
-		int health = 100;
 		boolean cantFlee = false;
-		
-		combat.battle(health, enemyhealth,cantFlee);
+		int raider = 25;
+		int raiderR = (int)(Math.random() * 3);
+		int raiderM = 1;
+		combat.battle(s, currentHealth, raider, raiderR, raiderM, cantFlee);
 	}
 }
 

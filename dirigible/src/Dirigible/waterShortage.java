@@ -9,16 +9,8 @@ public static void water(String[] args) throws InterruptedException{
 	int waterShortageBegin = JOptionPane.showConfirmDialog(null, "Captain, we are low on water. Do you want to go landside and find some?");
 	
 	if (waterShortageBegin == JOptionPane.YES_OPTION) {
-		int locationNumber = (int)(Math.random()*20);
 		
-		String [] locationNames = {"Meridian Bay", "Gale Crater", "Windsrow", "Tharsis Bulge", "Valles Marineris",
-				"Cerberus Province", "Olympus Mons", "Schiaparelli Crater", "Kaiser Sea", "Lockyer Land", "Dominus Canyon", 
-				"Bellator", "Crash Site-7", "Baurus Delta", "Carnega", "Lucifen Range", "Tharsis Highway", "Haliturn Quarry", 
-				"The Burntside", "The old shipyard"};
-		
-		String questZone = locationNames[locationNumber];
-		//System.out.println(locationNumber);
-		//System.out.println(questZone);
+		String questZone = stats.location();
 		
 		System.out.println("Great captain, we found water in " + questZone + ". Your transport is awaiting your order to leave.");
 		

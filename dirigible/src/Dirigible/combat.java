@@ -4,32 +4,43 @@ import javax.swing.JOptionPane;
 
 public class combat {
 
-	public static void battle(int health, int enemyHealth, boolean cantFlee) {
+	public static void battle(stats s, int currentHealth ,int enemyHealth, int enemyRange, int enemyMelee, boolean cantFlee) {
 		// TODO Auto-generated method stub
 		do{
-
-			boolean fleeOption = cantFlee;
-			playerTurn(health, enemyHealth, fleeOption);
 			
-		}while (health > 0 && enemyHealth > 0);
+			int rangedDamage = stats.rangedDamage(s.rangedWeapon);
+			int meleeDamage = stats.meleeDamage(s.meleeWeapon);
+			
+			boolean fleeOption = cantFlee;
+			playerTurn(s.health, rangedDamage, meleeDamage, enemyHealth, fleeOption);
+			
+		}while (currentHealth > 0 && enemyHealth > 0);
 		System.out.println("BANANA");
 	}
 			
-	public static int playerTurn(int health, int enemyHealth, boolean fleeOption){
+	public static int playerTurn(int rangedDamage, int meleeDamage, int currentHealth, int enemyHealth, boolean fleeOption){
 		
 		do{
 			
-			String [] combatOptions = {"Attack", "Flee"};
+			String [] combatOptions = {"Fire gun", "Melee attack", "Flee"};
 			String playerMove = (String) JOptionPane.showInputDialog(null, "Combat plan", null, JOptionPane.QUESTION_MESSAGE, null, combatOptions, combatOptions[0]);
 
 				
-			if (playerMove == "Attack"){
+			if (playerMove == "Fire gun"){
 				
-				int damage = (int)(Math.random()*10);
+				int damage = rangedDamage;
 				enemyHealth = enemyHealth - damage;
 				System.out.println("Enemy has taken " + damage + "! Current health is " + enemyHealth);
 				fleeOption = true;
 				
+			}
+			
+			if (playerMove == "Melee attack"){
+				
+				int damage = meleeDamage;
+				enemyHealth = enemyHealth - damage;
+				System.out.println("Enemy has taken " + damage + "! Current health is " + enemyHealth);
+				fleeOption = true;
 			}
 		
 			if (playerMove == "Flee"){
@@ -62,7 +73,7 @@ public class combat {
 		
 	}
 	
-	public static void enemyTurn(int health, int enemyHealth, boolean fleeOption, int cover){
+	//public static void enemyTurn()
 		
-	}
+	//}
 }
