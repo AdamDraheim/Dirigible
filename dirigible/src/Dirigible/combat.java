@@ -4,18 +4,18 @@ import javax.swing.JOptionPane;
 
 public class combat {
 
-	public static void battle(stats s, int currentHealth ,int enemyHealth, int enemyRange, int enemyMelee, boolean cantFlee) {
+	public static void battle(stats s, int currentHealth ,int enemyHealth,  int enemyRange, int enemyMelee, boolean cantFlee) {
 		// TODO Auto-generated method stub
 		do{
 			
 			int rangedDamage = stats.rangedDamage(s.rangedWeapon);
 			int meleeDamage = stats.meleeDamage(s.meleeWeapon);
-			
 			boolean fleeOption = cantFlee;
-			playerTurn(s.health, rangedDamage, meleeDamage, enemyHealth, fleeOption);
+			enemyHealth = playerTurn(rangedDamage, meleeDamage, currentHealth, enemyHealth, fleeOption);
+			currentHealth = enemyTurn(currentHealth,  enemyRange, enemyMelee);
 			
 		}while (currentHealth > 0 && enemyHealth > 0);
-		System.out.println("BANANA");
+		System.out.println("Mission Concluded");
 	}
 			
 	public static int playerTurn(int rangedDamage, int meleeDamage, int currentHealth, int enemyHealth, boolean fleeOption){
@@ -30,7 +30,7 @@ public class combat {
 				
 				int damage = rangedDamage;
 				enemyHealth = enemyHealth - damage;
-				System.out.println("Enemy has taken " + damage + "! Current health is " + enemyHealth);
+				System.out.println("Enemy has taken " + damage + " damage! Current health is " + enemyHealth);
 				fleeOption = true;
 				
 			}
@@ -48,7 +48,6 @@ public class combat {
 					System.out.println("You cannot flee this battle!");
 					fleeOption = false;
 				}
-			}
 				if (fleeOption == true){
 					int escapeChance = (int)(Math.random()*2);
 				
@@ -64,7 +63,7 @@ public class combat {
 						System.out.println("You failed to escape");
 						fleeOption = true;
 				}
-					
+				}
 			}
 				
 		}while(fleeOption == false);
@@ -73,7 +72,20 @@ public class combat {
 		
 	}
 	
-	//public static void enemyTurn()
+	public static int enemyTurn(int currentHealth, int enemyRange, int enemyMelee) {
 		
-	//}
+		int enemyChoice = (int)(Math.random()*2);
+		if (enemyChoice == 1){
+			int damage = (int)(Math.random() * enemyRange);
+			currentHealth = currentHealth - damage;
+			System.out.println("Enemy fired gun! You took " + damage + " damage! "+ currentHealth + " Remains!");
+		}
+		if (enemyChoice == 0){
+			int damage = enemyMelee;
+			currentHealth = currentHealth - damage;
+			System.out.println("Enemy meleed you! You took " + damage + " damage! "+ currentHealth + " Remains!");
+		}
+		return currentHealth;
+	}
 }
+	

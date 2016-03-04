@@ -54,8 +54,9 @@ public class meetDanton {
 		
 		boolean cantFlee = false;
 		int raider = 25;
-		int raiderR = (int)(Math.random() * 3);
+		int raiderR = 5;
 		int raiderM = 1;
+		
 		combat.battle(s, currentHealth, raider, raiderR, raiderM, cantFlee);
 	}
 }

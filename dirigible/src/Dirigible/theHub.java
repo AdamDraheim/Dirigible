@@ -6,7 +6,8 @@ public class theHub {
 
 	public static void main(String[] args) throws InterruptedException {
 		
-		stats mainStats = new stats(200, 200, 200, 100, 0, "rusty pistol", "worn dagger");
+		stats mainStats = new stats(200, 200, 200, 25, 0, "rusty pistol", "worn dagger");
+		boolean tutorialCompletion = false;
 		
 		// TODO Auto-generated method stub
 		System.out.println("The year is 2341, and you have lived your life on an airship, New Domain.");
@@ -17,7 +18,7 @@ public class theHub {
 		Thread.sleep(1000);
 		System.out.println("But, resources now run low, and you must return to the surface. Good luck, Captain");
 		Thread.sleep(2000);
-		
+			
 		tutorial(mainStats);
 		
 		do{
@@ -44,12 +45,8 @@ public class theHub {
 			if (opDecision == "Stats") { 
 				s.printStats();
 			}
-			}
-		
-		
-		
-		
-		
+		}
+
 		
 		public static void partOne(int random, stats s) throws InterruptedException{
 			
