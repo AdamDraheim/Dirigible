@@ -111,6 +111,7 @@ public class theHub {
 
 	public static void weaponSort(stats s) {
 		String weapon = stats.weaponsDropActOne();
+		System.out.println(weapon);
 		stats.setWeapon(s, weapon);
 	}
 }

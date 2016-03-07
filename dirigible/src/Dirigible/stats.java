@@ -235,15 +235,17 @@ public class stats {
 		if (weapon == "Flintlock" || weapon == "Revolver" ||weapon == "Repurpose SMG" || weapon == "Dirigible Rifle" || weapon == "22c Shotgun" || weapon == "Bellatorian Rifle" || weapon == "Experimental SMG") {
 			
 			String rangedWeapon = s.getRangedWeapon();
-			int weaponSwap = JOptionPane.showConfirmDialog(null, "You found a" + weapon + "(" + ")" + ". Swap it for your " + rangedWeapon + "(" + ")" + "?");
+			int weaponSwap = JOptionPane.showConfirmDialog(null, "You found a " + weapon + "(" + ")" + ". Swap it for your " + rangedWeapon + "(" + ")" + "?");
 			if (weaponSwap == JOptionPane.YES_OPTION){
+				rangedWeapon = weapon;
 				s.setRangedWeapon(rangedWeapon);
 			}
 			
 		if (weapon == "dagger" || weapon == "switchblade" || weapon == "scimitar" || weapon == "worker's hammer" || weapon == "crowbar" || weapon == "Dirigible Guard Sword" ) {
-			String meleeWeapon = s.getRangedWeapon();
-			weaponSwap = JOptionPane.showConfirmDialog(null, "You found a" + weapon + "(" + ")" + ". Swap it for your " + meleeWeapon + "(" + ")" + "?");
-			if (weaponSwap == JOptionPane.YES_OPTION){
+			String meleeWeapon = s.getMeleeWeapon();
+			int meleeWeaponSwap = JOptionPane.showConfirmDialog(null, "You found a " + weapon + "(" + ")" + ". Swap it for your " + meleeWeapon + "(" + ")" + "?");
+			if (meleeWeaponSwap == JOptionPane.YES_OPTION){
+				meleeWeapon = weapon;
 				s.setMeleeWeapon(meleeWeapon);
 			}
 		}
