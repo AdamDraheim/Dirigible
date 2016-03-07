@@ -6,8 +6,7 @@ public class theHub {
 
 	public static void main(String[] args) throws InterruptedException {
 		
-		stats mainStats = new stats(200, 200, 200, 25, 0, "rusty pistol", "worn dagger");
-		boolean tutorialCompletion = false;
+		stats mainStats = new stats(200, 200, 200, 200, 25, 0, "rusty pistol", "worn dagger", 0, 0);
 		
 		// TODO Auto-generated method stub
 		System.out.println("The year is 2341, and you have lived your life on an airship, New Domain.");
@@ -57,8 +56,16 @@ public class theHub {
 				if (opDecision == "Run an operation"){
 					
 					if (random == 0) {
-						waterShortage.water(opChoices);
+						
+						boolean missionSuccess = waterShortage.water(opChoices, s);
+						System.out.println(missionSuccess);
 						decreaseStats(s);
+						if (missionSuccess == true){
+							
+							experienceIncrease(s);
+							weaponSort(s);
+							
+						}
 					}
 					
 					if (random == 1){
@@ -101,6 +108,11 @@ public class theHub {
 			
 		}
 
+
+	public static void weaponSort(stats s) {
+		String weapon = stats.weaponsDropActOne();
+		stats.setWeapon(s, weapon);
+	}
 }
 
 

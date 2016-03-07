@@ -44,20 +44,34 @@ public class meetDanton {
 		
 		
 		System.out.println("Danton: Very well sir.");
+		Thread.sleep(1000);
 		System.out.println("Danton: Scanners indicate a hostile presence in the area. ");
+		Thread.sleep(1000);
 		System.out.println("Danton: Don't worry about getting shot too much, our med bay should patch you up so long as you aren't dead.");
 		System.out.println("I'll head around, you hold guard.");
+		Thread.sleep(2000);
 		System.out.println();
 		System.out.println("The ensuing, somber silence is shaken by a sniper shot");
 		System.out.println();
+		Thread.sleep(1000);
 		System.out.println("Raider: Let's see what you're made of!");
+		Thread.sleep(1000);
 		
 		boolean cantFlee = false;
 		int raider = 25;
 		int raiderR = 5;
 		int raiderM = 1;
+		int raiderMod = 0;
 		
-		combat.battle(s, currentHealth, raider, raiderR, raiderM, cantFlee);
+		boolean victory = combat.battle(s, currentHealth, raider, raiderR, raiderM, cantFlee, raiderMod);
+		
+		if (victory == false){
+			System.out.println("Danton: Sir! Let's get you out of here.");
+		}
+		
+		if (victory == true) {
+			System.out.println("Danton: Nice job, sir!");
+		}
 	}
 }
 

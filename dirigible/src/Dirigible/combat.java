@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 public class combat {
 
-	public static void battle(stats s, int currentHealth ,int enemyHealth,  int enemyRange, int enemyMelee, boolean cantFlee) {
+	public static boolean battle(stats s, int currentHealth ,int enemyHealth,  int enemyRange, int enemyMelee, boolean cantFlee, int enemyDamMod) {
 		// TODO Auto-generated method stub
 		do{
 			
@@ -12,10 +12,20 @@ public class combat {
 			int meleeDamage = stats.meleeDamage(s.meleeWeapon);
 			boolean fleeOption = cantFlee;
 			enemyHealth = playerTurn(rangedDamage, meleeDamage, currentHealth, enemyHealth, fleeOption);
-			currentHealth = enemyTurn(currentHealth,  enemyRange, enemyMelee);
+			currentHealth = enemyTurn(currentHealth,  enemyRange, enemyMelee, enemyDamMod);
 			
 		}while (currentHealth > 0 && enemyHealth > 0);
-		System.out.println("Mission Concluded");
+		
+		boolean victory = false;
+		if (currentHealth < 0){
+			victory = false;
+		}
+		
+		if (enemyHealth < 0){
+			victory = true;
+		}
+		return victory;
+		
 	}
 			
 	public static int playerTurn(int rangedDamage, int meleeDamage, int currentHealth, int enemyHealth, boolean fleeOption){
@@ -30,7 +40,7 @@ public class combat {
 				
 				int damage = rangedDamage;
 				enemyHealth = enemyHealth - damage;
-				System.out.println("Enemy has taken " + damage + " damage! Current health is " + enemyHealth);
+				System.out.println("Enemy has taken " + damage + " damage! Enemy health is " + enemyHealth);
 				fleeOption = true;
 				
 			}
@@ -39,7 +49,7 @@ public class combat {
 				
 				int damage = meleeDamage;
 				enemyHealth = enemyHealth - damage;
-				System.out.println("Enemy has taken " + damage + "! Current health is " + enemyHealth);
+				System.out.println("Enemy has taken " + damage + "! Enemy health is " + enemyHealth);
 				fleeOption = true;
 			}
 		
@@ -72,18 +82,18 @@ public class combat {
 		
 	}
 	
-	public static int enemyTurn(int currentHealth, int enemyRange, int enemyMelee) {
+	public static int enemyTurn(int currentHealth, int enemyRange, int enemyMelee, int damMod) {
 		
-		int enemyChoice = (int)(Math.random()*2);
+		int enemyChoice = (int)(Math.random()*2) + damMod;
 		if (enemyChoice == 1){
 			int damage = (int)(Math.random() * enemyRange);
 			currentHealth = currentHealth - damage;
-			System.out.println("Enemy fired gun! You took " + damage + " damage! "+ currentHealth + " Remains!");
+			System.out.println("Enemy fired gun! You took " + damage + " damage! "+ currentHealth + " health remains!");
 		}
 		if (enemyChoice == 0){
 			int damage = enemyMelee;
 			currentHealth = currentHealth - damage;
-			System.out.println("Enemy meleed you! You took " + damage + " damage! "+ currentHealth + " Remains!");
+			System.out.println("Enemy meleed you! You took " + damage + " damage! "+ currentHealth + " health remains!");
 		}
 		return currentHealth;
 	}
