@@ -14,8 +14,9 @@ public class stats {
 	String meleeWeapon;
 	int nmaRep;
 	int ashenRep;
+	int morality;
 	
-	public stats(int water, int fuel, int food, int credits, int health, int experience, String rangedWeapon, String meleeWeapon, int nmaRep, int ashenRep) {
+	public stats(int water, int fuel, int food, int credits, int health, int experience, String rangedWeapon, String meleeWeapon, int nmaRep, int ashenRep, int morality) {
 		this.water = water;
 		this.fuel = fuel;
 		this.food = food;
@@ -26,6 +27,7 @@ public class stats {
 		this.meleeWeapon = meleeWeapon;
 		this.nmaRep = nmaRep;
 		this.ashenRep = ashenRep;
+		this.morality = morality;
 	}
 	
 	public int getWater(){
@@ -114,6 +116,14 @@ public class stats {
 		this.ashenRep = ashenRep;
 	}
 	
+	public int getMorality(){
+		return morality;
+	}
+	
+	public void setMorality(int morality){
+		this.morality = morality;
+	}
+	
 	public void printStats(){
 		
 		System.out.println();;
@@ -140,7 +150,6 @@ public class stats {
 	
 	
 	public static String location() {
-		// TODO Auto-generated method stub
 		String [] locationNames = {"Meridian Outpost", "Gale Crater", "Windsrow", "Tharsis Bulge", "Valles Marineris", "Cerberus Province", "Olympus Mons", "Schiaparelli Crater", "Kaiser Sea", "Lockyer Land", "Dominus Canyon", "Bellator", "Crash Site-7", "Baurus Delta", "Carnega", "Lucifen Range", "Tharsis Highway", "Halit"+ "urn Quarry", "The Burntside", "The old shipyard"};
 		int locationNumber = (int) (Math.random()*20);
 		String questZone = locationNames[locationNumber];
@@ -230,25 +239,25 @@ public class stats {
 		
 	}
 	
-	public static void setWeapon(stats s, String weapon){
+	public static void setWeapon(stats s, String weapon, String rangedValue, String meleeValue){
 		
 		if (weapon == "Flintlock" || weapon == "Revolver" ||weapon == "Repurpose SMG" || weapon == "Dirigible Rifle" || weapon == "22c Shotgun" || weapon == "Bellatorian Rifle" || weapon == "Experimental SMG") {
 			
 			String rangedWeapon = s.getRangedWeapon();
-			int weaponSwap = JOptionPane.showConfirmDialog(null, "You found a " + weapon + "(" + ")" + ". Swap it for your " + rangedWeapon + "(" + ")" + "?");
+			int weaponSwap = JOptionPane.showConfirmDialog(null, "You found a " + weapon + rangedValue + ". Swap it for your " + rangedWeapon + stats.rangedDamagePrint(rangedWeapon) + "?");
 			if (weaponSwap == JOptionPane.YES_OPTION){
 				rangedWeapon = weapon;
 				s.setRangedWeapon(rangedWeapon);
 			}
+		}
 			
 		if (weapon == "dagger" || weapon == "switchblade" || weapon == "scimitar" || weapon == "worker's hammer" || weapon == "crowbar" || weapon == "Dirigible Guard Sword" ) {
 			String meleeWeapon = s.getMeleeWeapon();
-			int meleeWeaponSwap = JOptionPane.showConfirmDialog(null, "You found a " + weapon + "(" + ")" + ". Swap it for your " + meleeWeapon + "(" + ")" + "?");
+			int meleeWeaponSwap = JOptionPane.showConfirmDialog(null, "You found a " + weapon + meleeValue + ". Swap it for your " + meleeWeapon + stats.meleeDamagePrint(meleeWeapon) + "?");
 			if (meleeWeaponSwap == JOptionPane.YES_OPTION){
 				meleeWeapon = weapon;
 				s.setMeleeWeapon(meleeWeapon);
 			}
-		}
 		}
 	}
 
@@ -256,7 +265,42 @@ public class stats {
 		
 		int damage = 0;
 		if (rangedWeapon == "rusty pistol"){
-			damage = (int)(Math.random()* 3) + 3;
+			damage = (int)(Math.random()* 5) + 6;
+
+		}
+		
+		if (rangedWeapon == "Flintlock"){
+			damage = (int)(Math.random()* 5) + 10;
+
+		}
+		
+		if (rangedWeapon == "Revolver"){
+			damage = (int)(Math.random()* 5) + 12;
+
+		}
+		
+		if (rangedWeapon == "Repurpose SMG"){
+			damage = (int)(Math.random()* 13) + 6;
+
+		}
+		
+		if (rangedWeapon == "Dirigible Rifle"){
+			damage = (int)(Math.random()* 3) + 12;
+
+		}
+		
+		if (rangedWeapon == "22c Shotgun"){
+			damage = (int)(Math.random()* 3) + 10;
+
+		}
+		
+		if (rangedWeapon == "Bellatorian Rifle"){
+			damage = (int)(Math.random()* 9) + 16;
+
+		}
+		
+		if (rangedWeapon == "Experimental SMG"){
+			damage = (int)(Math.random()* 21) + 10;
 
 		}
 		
@@ -267,8 +311,38 @@ public class stats {
 		
 		String rangedValue = "";
 		if (rangedWeapon == "rusty pistol"){
-			rangedValue = "(3-5 damage)";
+			rangedValue = "(6-10 damage)";
 		}
+		
+		if (rangedWeapon == "Flintlock") {
+			rangedValue = "(10-14 damage)";
+		}
+		
+		if (rangedWeapon == "Revolver"){
+			rangedValue = "(12-16 damage)";
+		}
+		
+		if (rangedWeapon == "Repurpose SMG"){
+			rangedValue = "(6-18 damage)";
+		}
+		
+		if (rangedWeapon == "Dirigible Rifle"){
+			rangedValue = "(12-14, 18* damage)";
+		}
+		
+		if (rangedWeapon == "22c Shotgun"){
+			rangedValue = "(10-12, 20*)";
+		}
+		
+		if (rangedWeapon == "Bellatorian Rifle"){
+			rangedValue = "(16-24, 28* damage)";
+		}
+		
+		if (rangedWeapon == "Experimental SMG"){
+			rangedValue = "(10-30 damage)";
+		}
+			
+			
 		return rangedValue;
 	}
 	
@@ -276,16 +350,66 @@ public class stats {
 		
 		String meleeValue = "";
 		if (meleeWeapon == "worn dagger"){
-			meleeValue = "(2 damage)";
+			meleeValue = "(8 damage)";
 		}
+		
+		if (meleeWeapon == "dagger"){
+			meleeValue = "(11 damage)";
+		}
+		
+		if (meleeWeapon == "switchblade"){
+			meleeValue = "(12 damage)";
+		}
+		
+		if (meleeWeapon == "scimitar"){
+			meleeValue = "(13 damage)";
+		}
+		
+		if (meleeWeapon == "worker's hammer"){
+			meleeValue = "(14 damage)";
+		}
+		
+		if (meleeWeapon == "crowbar"){
+			meleeValue = "(15 damage)";
+		}
+		
+		if (meleeWeapon == "Dirigible Guard Sword"){
+			meleeValue = "(20 damage)";
+		}
+		
 		return meleeValue;
+
 	}
 	
 	public static int meleeDamage(String meleeWeapon){
 		
 		int damage = 0;
 		if (meleeWeapon == "worn dagger"){
-			damage = 2;
+			damage = 8;
+		}
+		
+		if (meleeWeapon == "dagger"){
+			damage = 11;
+		}
+		
+		if (meleeWeapon == "switchblade"){
+			damage = 12;
+		}
+		
+		if (meleeWeapon == "scimitar"){
+			damage = 13;
+		}
+		
+		if (meleeWeapon == "worker's hammer"){
+			damage = 14;
+		}
+		
+		if (meleeWeapon == "crowbar"){
+			damage = 15;
+		}
+		
+		if (meleeWeapon == "Dirigible Guard Sword"){
+			damage = 20;
 		}
 		
 		return damage;

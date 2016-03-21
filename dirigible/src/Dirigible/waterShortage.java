@@ -58,7 +58,7 @@ public static boolean water(String[] args, stats s) throws InterruptedException{
 
 	    		boolean victory = combat.battle(s, currentHealth, raider, raiderR, raiderM, cantFlee, raiderMod);
 	    		
-	    		if (victory == false){
+	    		if (victory == true){
 	    			System.out.println("Colonel Howards: Nice work there, Captain.");
 	    			System.out.println("Roalds: We really showed them a thing or two");
 	    			System.out.println("Colonel Howards: I suppose we did. Here, we brought some water to your transport. ");
@@ -68,6 +68,10 @@ public static boolean water(String[] args, stats s) throws InterruptedException{
 	    			int waterAmount = (int)(Math.random() * 10) * 10;
 	    			waterSupply += waterAmount;
 	    			s.setWater(waterSupply);
+	    			
+	    			int morality = s.getMorality();
+	    			morality += 25;
+	    			s.setMorality(morality);
 	    			
 	    			System.out.println("You gained " + waterAmount + " gallons of water!");
 	    			
@@ -100,6 +104,9 @@ public static boolean water(String[] args, stats s) throws InterruptedException{
 	    		if (victory == false){
 	    			
 	    			System.out.println("Colonel Howards: Maybe next time you will consider working with us a bit more... jovially. Guards, release them.");
+	    			int morality = s.getMorality();
+	    			morality -= 25;
+	    			s.setMorality(morality);
 
 	    			
 	    		}
@@ -116,6 +123,10 @@ public static boolean water(String[] args, stats s) throws InterruptedException{
 	    			int waterAmount = (int)(Math.random() * 10) * 10;
 	    			waterSupply += waterAmount;
 	    			s.setWater(waterSupply);
+	    			
+	    			int morality = s.getMorality();
+	    			morality -= 25;
+	    			s.setMorality(morality);
 	    			
 	    			System.out.println("You found " + waterAmount + " gallons of water!");
 	    			operationSuccess = true;
@@ -188,6 +199,10 @@ public static boolean water(String[] args, stats s) throws InterruptedException{
 	    			int waterAmount = (int)(Math.random() * 10) * 10;
 	    			waterSupply += waterAmount;
 	    			s.setWater(waterSupply);
+	    			
+	    			int morality = s.getMorality();
+	    			morality -= 25;
+	    			s.setMorality(morality);
 	    			
 	    			System.out.println("You found " + waterAmount + " gallons of water!");
 	    			operationSuccess = true;

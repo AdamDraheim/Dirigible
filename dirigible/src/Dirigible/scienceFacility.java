@@ -19,7 +19,7 @@ public class scienceFacility {
 			System.out.println("A control pad is on the Northern corner. Light posts petrude from the ground every ninety degrees ");
 			System.out.println();
 			Thread.sleep(2000);
-			System.out.println("Crew Member: Sorry, sir. I don't see anything. We can check the controls.");
+			System.out.println("Roalds: Sorry, sir. I don't see anything. We can check the controls.");
 			Thread.sleep(1000);
 			System.out.println("You walk over to the controls.");
 			System.out.println();
@@ -36,6 +36,7 @@ public class scienceFacility {
 					
 					
 				}
+			}
 				
 				else{
 						
@@ -43,8 +44,8 @@ public class scienceFacility {
 					
 				}
 				
-			}
 			
+		}
 			
 			
 			else {
@@ -53,7 +54,8 @@ public class scienceFacility {
 				
 			}
 			
-		}
+		
+		
 		
 		if (scienceFacilityBegin == JOptionPane.NO_OPTION){
 			

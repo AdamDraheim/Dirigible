@@ -17,11 +17,11 @@ public class combat {
 		}while (currentHealth > 0 && enemyHealth > 0);
 		
 		boolean victory = false;
-		if (currentHealth < 0){
+		if (currentHealth <= 0){
 			victory = false;
 		}
 		
-		if (enemyHealth < 0){
+		if (enemyHealth <= 0){
 			victory = true;
 		}
 		return victory;

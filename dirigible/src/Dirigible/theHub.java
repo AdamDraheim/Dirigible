@@ -6,26 +6,30 @@ public class theHub {
 
 	public static void main(String[] args) throws InterruptedException {
 		
-		stats mainStats = new stats(200, 200, 200, 200, 25, 0, "rusty pistol", "worn dagger", 0, 0);
+		stats mainStats = new stats(200, 200, 200, 200, 25, 0, "rusty pistol", "worn dagger", 0, 0, 0);
 		
 		// TODO Auto-generated method stub
 		System.out.println("The year is 2341, and you have lived your life on an airship, New Domain.");
 		Thread.sleep(1000);
 		System.out.println("You recently became captain of the ship, and now you must ensure your survival.");
 		Thread.sleep(1000);
-		System.out.println("It has been centuries since you have arrived back on the surface.");
+		System.out.println("It has been decades since your ship has arrived back on the surface.");
 		Thread.sleep(1000);
 		System.out.println("But, resources now run low, and you must return to the surface. Good luck, Captain");
 		Thread.sleep(2000);
 			
 		tutorial(mainStats);
+		decreaseStats(mainStats);
+		experienceIncrease(mainStats);
+		weaponSort(mainStats);
+		
 		
 		do{
-			int random = (int)(Math.random()*2);
+			
+			int random = (int)(Math.random()*3);
 			partOne(random, mainStats);
 			
-			
-		}while(mainStats.getExperience() < 100 );
+		}while(mainStats.getExperience() < 100);
 		
 	}
 		
@@ -35,6 +39,8 @@ public class theHub {
 			String opDecision = (String) JOptionPane.showInputDialog(null, "Operation?", null, JOptionPane.QUESTION_MESSAGE, null, opChoices, opChoices[0]);
 		
 			if (opDecision == "Run an operation"){
+				
+				//unfinished
 				
 				meetDanton.Danton(opChoices, s);
 				
@@ -57,6 +63,8 @@ public class theHub {
 					
 					if (random == 0) {
 						
+						//Unfinished
+						
 						boolean missionSuccess = waterShortage.water(opChoices, s);
 						System.out.println(missionSuccess);
 						decreaseStats(s);
@@ -69,19 +77,36 @@ public class theHub {
 					}
 					
 					if (random == 1){
+						
+						//Unfinished
+						
 						scienceFacility.facility(opChoices);
 						decreaseStats(s);
 					}
 					
-
+					if (random == 2){
+						
+						//unfinished
+						
+						boolean missionSuccess = desertBananaPlantation.plantationMission(s);
+						System.out.println(missionSuccess);
+						decreaseStats(s);
+						if (missionSuccess == true){
+							
+							experienceIncrease(s);
+							weaponSort(s);
+							
+						}
+						
+					}
 				}
+				
 				if (opDecision == "Stats") { 
 					
 					s.printStats();
 					
 					
 				}
-			
 			
 	}
 		public static void decreaseStats(stats s){
@@ -111,8 +136,9 @@ public class theHub {
 
 	public static void weaponSort(stats s) {
 		String weapon = stats.weaponsDropActOne();
-		System.out.println(weapon);
-		stats.setWeapon(s, weapon);
+		String rangedValue = stats.rangedDamagePrint(weapon);
+		String meleeValue = stats.meleeDamagePrint(weapon);
+		stats.setWeapon(s, weapon, rangedValue, meleeValue);
 	}
 }
 
